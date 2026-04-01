@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JYPP 투자기업 최신뉴스</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    header {
+      border-bottom: 1px solid #e8e8e8;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #4f46e5; }
+    .logo a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .back-link {
+      font-size: 13px;
+      color: #888;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #4f46e5; }
+
+    /* ── Main ── */
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* ── Section Title ── */
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #4f46e5;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 32px;
+      letter-spacing: -0.5px;
+    }
+
+    /* ── 뉴스 컬럼 ── */
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .news-column h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #4f46e5;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #4f46e5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .news-column h3 .badge {
+      font-size: 11px;
+      background: #4f46e5;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+    .news-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+      transition: all 0.15s;
+    }
+    .news-item:last-child {
+      border-bottom: none;
+    }
+    .news-item:hover {
+      background: #fafafa;
+      margin: 0 -12px;
+      padding: 16px 12px;
+      border-radius: 8px;
+    }
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .news-item .news-date {
+      font-size: 12px;
+      color: #999;
+      font-weight: 400;
+    }
+    .news-item .news-source {
+      font-size: 11px;
+      color: #bbb;
+      background: #f5f5f5;
+      padding: 1px 8px;
+      border-radius: 3px;
+    }
+    .news-item .news-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: #1a1a1a;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .news-item .news-title a {
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    .news-item .news-title a:hover {
+      color: #4f46e5;
+      text-decoration: underline;
+    }
+    .news-item .news-summary {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid #e8e8e8;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .news-grid { grid-template-columns: 1fr; gap: 32px; }
+      .section-title { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="logo"><a href="index.html"><span>JYPP</span> 여성기업 트렌드</a></div>
+      <a href="index.html" class="back-link">&larr; 메인으로 돌아가기</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">JYPP 투자기업 최신뉴스</h2>
+
+    <div class="news-grid">
+
+      <!-- 메디쿼터스 -->
+      <div class="news-column">
+        <h3>메디쿼터스 <span class="badge">최근 2주</span></h3>
+        <div id="mediquitousNews"></div>
+      </div>
+
+      <!-- 미스터아빠 -->
+      <div class="news-column">
+        <h3>미스터아빠 <span class="badge">최근 2주</span></h3>
+        <div id="mrpapaNews"></div>
+      </div>
+
+      <!-- 에이베러 -->
+      <div class="news-column">
+        <h3>에이베러 <span class="badge">최근 2주</span></h3>
+        <div id="abetterNews"></div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2026 JYPP &middot; 투자기업 뉴스 모니터링
+  </footer>
+
+  <script>
+    const mediquitousData = [
+      {
+        date: '2026',
+        title: '메디쿼터스, 글로벌 패션&뷰티 커머스로 연매출 2,000억 달성',
+        source: 'THE VC',
+        summary: '국내외 주요 기관투자자로부터 누적 735억 원을 유치, 창업 7년 만에 연매출 2,000억 원, 글로벌 매출 500억 원 달성.',
+        url: 'https://thevc.kr/mediquitous'
+      },
+      {
+        date: '2026',
+        title: '메디쿼터스, 컴퍼니빌더 오픈런프로젝트 인수',
+        source: '로켓펀치',
+        summary: '메디쿼터스가 컴퍼니빌더 오픈런프로젝트를 인수하며 M&A를 통한 사업 확장을 가속화.',
+        url: 'https://www.rocketpunch.com/companies/mediquitous'
+      },
+      {
+        date: '2026',
+        title: '메디쿼터스, 아이웨어 브랜드 더블러버즈 리런칭…성수·명동 플래그십 오픈',
+        source: 'Mediquitous',
+        summary: '아이웨어 브랜드 DOUBLE LOVERS를 리런칭하고 성수, 명동에 플래그십 스토어를 오픈했다.',
+        url: 'https://mediquitous.com/News'
+      },
+      {
+        date: '2026',
+        title: '메디쿼터스, 나이스고스트클럽 26 Spring 컬렉션 출시',
+        source: 'Mediquitous',
+        summary: '캐주얼 브랜드 Nice Ghost Club의 2026 Spring 컬렉션을 선보이며 브랜드 라인업을 강화.',
+        url: 'https://mediquitous.com/News'
+      }
+    ];
+
+    const mrpapaData = [
+      {
+        date: '2026',
+        title: '신선식품 물류 혁신 미스터아빠, 70억 규모 프리A 투자유치',
+        source: 'NBN미디어',
+        summary: '시리즈벤처스 등이 참여한 70억 규모 프리A 투자를 유치, 지역 확장과 스마트 물류시스템 고도화에 활용.',
+        url: 'https://www.nbntv.kr/news/articleView.html?idxno=297990'
+      },
+      {
+        date: '2026',
+        title: '[VC 투자기업] 미스터아빠, 잇단 지자체 러브콜…매출 성장 청신호',
+        source: 'THE BELL',
+        summary: '지역 농가 직거래 플랫폼으로 지자체 협업이 확대되며 매출 성장세가 가속화되고 있다.',
+        url: 'https://m.thebell.co.kr/m/newsview.asp?svccode=00&newskey=202404031319267040104940'
+      },
+      {
+        date: '2025',
+        title: '미스터아빠, 창고 보관 없이 신선식품 공급 유통혁신',
+        source: '한국일보',
+        summary: '원산지에서 직접 검수 후 창고보관 없이 소비자에 직배송하는 프로세스로 신선식품 유통을 혁신.',
+        url: 'https://www.hankookilbo.com/News/Read/A2023032913430004764'
+      },
+      {
+        date: '2025',
+        title: '로컬로 동네 슈퍼마켓을 뒤엎다…미스터아빠',
+        source: '농민신문',
+        summary: '중간 유통 최소화로 지역 농가 직배송, 창업 2년 만에 매출 130억 원 달성 및 아기유니콘 선정.',
+        url: 'https://www.nongmin.com/article/20231025500341'
+      }
+    ];
+
+    const abetterData = [
+      {
+        date: '2026',
+        title: '에이베러, AI 커머스 최적화 솔루션으로 혁신 프리미어 1000 선정',
+        source: '시사매거진',
+        summary: '중소벤처기업부 혁신 프리미어 1000에 선정, 정책 금융 우대와 IR 기회 등 지원을 받게 된다.',
+        url: 'https://www.sisamagazine.co.kr/news/articleView.html?idxno=514929'
+      },
+      {
+        date: '2025.03',
+        title: '에이베러, 타임웍스인베스트먼트로부터 10억 원 프리A 투자 추가 유치',
+        source: '와우테일',
+        summary: '캡스톤파트너스에 이어 타임웍스인베스트먼트로부터 추가 투자를 유치, 프리A 총 20억 원 달성.',
+        url: 'https://wowtale.net/2025/03/06/237957/'
+      },
+      {
+        date: '2024.12',
+        title: 'AI 이커머스 최적화 플랫폼 에이베러, 10억 프리A 투자유치',
+        source: '유니콘팩토리',
+        summary: '쿠팡·아마존 특화 AI 세일즈 전략 플랫폼 디스터로 10억 원 규모 프리A 투자를 유치했다.',
+        url: 'https://www.unicornfactory.co.kr/article/2024120909110177044'
+      },
+      {
+        date: '2024.12',
+        title: 'AI로 판매 돕는 전자상거래 스타트업 에이베러, 신규 투자 유치',
+        source: '한국일보',
+        summary: '매출 2022년 49억에서 2023년 272억으로 5.5배 성장, 2024년 500억 매출 전망.',
+        url: 'https://www.hankookilbo.com/News/Read/A2024120915400005686'
+      },
+      {
+        date: '2024.10',
+        title: '에이베러, CTO에 카카오모빌리티 출신 영입…기술·커머스 결합 강화',
+        source: '유니콘팩토리',
+        summary: '카카오모빌리티 출신 CTO를 영입하며 AI 커머스 기술력을 한층 강화했다.',
+        url: 'https://www.unicornfactory.co.kr/article/2024102309443498267'
+      }
+    ];
+
+    // ── 뉴스 렌더링 ──
+    function renderNews(containerId, data) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = data.map(item => `
+        <div class="news-item">
+          <div class="news-meta">
+            <span class="news-date">${item.date}</span>
+            <span class="news-source">${item.source}</span>
+          </div>
+          <div class="news-title"><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></div>
+          <div class="news-summary">${item.summary}</div>
+        </div>
+      `).join('');
+    }
+
+    renderNews('mediquitousNews', mediquitousData);
+    renderNews('mrpapaNews', mrpapaData);
+    renderNews('abetterNews', abetterData);
+  </script>
+
+</body>
+</html>

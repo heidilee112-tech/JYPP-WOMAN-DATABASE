@@ -214,6 +214,35 @@
       line-height: 1.6;
     }
 
+    /* ── 포트폴리오 링크 ── */
+    .portfolio-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      float: right;
+      margin-top: 48px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4f46e5;
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid #e0e7ff;
+      border-radius: 8px;
+      background: #fafafe;
+      transition: all 0.2s;
+    }
+    .portfolio-link:hover {
+      background: #eef2ff;
+      border-color: #c7d2fe;
+    }
+    .portfolio-link .arrow {
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+    .portfolio-link:hover .arrow {
+      transform: translateX(4px);
+    }
+
     /* ── Footer ── */
     footer {
       border-top: 1px solid #e8e8e8;
@@ -292,6 +321,10 @@
       </div>
 
     </div>
+
+    <a href="portfolio.html" class="portfolio-link">
+      JYPP 투자기업 최신뉴스 <span class="arrow">&rarr;</span>
+    </a>
 
   </main>
 

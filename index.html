@@ -41,19 +41,6 @@
       letter-spacing: -0.5px;
     }
     .logo span { color: #4f46e5; }
-    .header-meta {
-      text-align: right;
-    }
-    .header-date {
-      font-size: 13px;
-      color: #888;
-      font-weight: 400;
-    }
-    .header-def {
-      font-size: 11px;
-      color: #aaa;
-      margin-top: 2px;
-    }
 
     /* ── Main ── */
     main {
@@ -213,6 +200,14 @@
       line-height: 1.5;
       margin-bottom: 4px;
     }
+    .news-item .news-title a {
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    .news-item .news-title a:hover {
+      color: #4f46e5;
+      text-decoration: underline;
+    }
     .news-item .news-summary {
       font-size: 13px;
       color: #777;
@@ -243,10 +238,6 @@
   <header>
     <div class="header-inner">
       <div class="logo"><span>JYPP</span> 여성기업 트렌드</div>
-      <div class="header-meta">
-        <div class="header-date" id="headerDate"></div>
-        <div class="header-def">여성기업 = 대표이사가 여성인 기업</div>
-      </div>
     </div>
   </header>
 
@@ -310,11 +301,6 @@
   </footer>
 
   <script>
-    // ── 날짜 표시 ──
-    const now = new Date();
-    const dateStr = `${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일 기준`;
-    document.getElementById('headerDate').textContent = dateStr;
-
     // ── 차트: 최근 3개년 여성기업 수 ──
     const ctx = document.getElementById('statusChart').getContext('2d');
     new Chart(ctx, {
@@ -374,31 +360,36 @@
         date: '2026.03.31',
         title: '여성 창업 펀드, 1분기 투자 집행액 전년比 22% 증가',
         source: '한국경제',
-        summary: '모태펀드 산하 여성 창업 전용 펀드의 1분기 투자 집행액이 전년 동기 대비 22% 증가한 것으로 나타났다.'
+        summary: '모태펀드 산하 여성 창업 전용 펀드의 1분기 투자 집행액이 전년 동기 대비 22% 증가한 것으로 나타났다.',
+        url: 'https://search.naver.com/search.naver?query=여성+창업+펀드+투자'
       },
       {
         date: '2026.03.29',
         title: '여성기업 전용 VC펀드 3호 결성, 500억 원 규모',
         source: '스타트업투데이',
-        summary: '중소벤처기업부와 한국벤처투자가 여성 대표이사 기업 대상 VC펀드 3호를 500억 원 규모로 결성했다.'
+        summary: '중소벤처기업부와 한국벤처투자가 여성 대표이사 기업 대상 VC펀드 3호를 500억 원 규모로 결성했다.',
+        url: 'https://search.naver.com/search.naver?query=여성기업+VC펀드+결성'
       },
       {
         date: '2026.03.28',
         title: '여성 대표 스타트업 시리즈B 유치 건수 역대 최고 경신',
         source: '플래텀',
-        summary: '올해 1분기 여성 대표이사가 이끄는 스타트업의 시리즈B 투자 유치 건수가 역대 최고치를 기록.'
+        summary: '올해 1분기 여성 대표이사가 이끄는 스타트업의 시리즈B 투자 유치 건수가 역대 최고치를 기록.',
+        url: 'https://search.naver.com/search.naver?query=여성+스타트업+시리즈B'
       },
       {
         date: '2026.03.27',
         title: '여성경제인협회, 해외 투자 IR 프로그램 참가 기업 모집',
         source: '뉴시스',
-        summary: '한국여성경제인협회가 여성기업의 해외 투자 유치를 위한 글로벌 IR 로드쇼 참가 기업을 모집 중.'
+        summary: '한국여성경제인협회가 여성기업의 해외 투자 유치를 위한 글로벌 IR 로드쇼 참가 기업을 모집 중.',
+        url: 'https://search.naver.com/search.naver?query=여성경제인협회+해외+IR'
       },
       {
         date: '2026.03.26',
         title: '지역 여성 창업 액셀러레이터, 후속 투자 연계율 45%',
         source: '이데일리',
-        summary: '부산·대전 등 지역 거점 여성 창업 액셀러레이터의 후속 투자 연계율이 45%에 도달했다.'
+        summary: '부산·대전 등 지역 거점 여성 창업 액셀러레이터의 후속 투자 연계율이 45%에 도달했다.',
+        url: 'https://search.naver.com/search.naver?query=여성+창업+액셀러레이터+투자'
       }
     ];
 
@@ -407,31 +398,36 @@
         date: '2026.03.31',
         title: '중기부, 여성기업 공시제도 하반기 시행 확정',
         source: '연합뉴스',
-        summary: '여성기업 투자·회수·밸류업 성과를 체계적으로 공시하는 제도를 2026년 하반기부터 시행한다.'
+        summary: '여성기업 투자·회수·밸류업 성과를 체계적으로 공시하는 제도를 2026년 하반기부터 시행한다.',
+        url: 'https://search.naver.com/search.naver?query=여성기업+공시제도+시행'
       },
       {
         date: '2026.03.30',
         title: '여성기업 확인서 발급 기준 개선안 행정예고',
         source: '정책브리핑',
-        summary: '여성기업 확인서 발급 기준을 실질 경영 참여(대표이사 기준) 중심으로 개편하는 개선안이 행정예고되었다.'
+        summary: '여성기업 확인서 발급 기준을 실질 경영 참여(대표이사 기준) 중심으로 개편하는 개선안이 행정예고되었다.',
+        url: 'https://search.naver.com/search.naver?query=여성기업+확인서+발급+기준+개선'
       },
       {
         date: '2026.03.28',
         title: '여성기업육성법 개정안 소위 통과, R&D 지원 확대',
         source: '국회뉴스ON',
-        summary: '여성기업 지원 범위를 기술·R&D까지 확대하는 여성기업육성법 개정안이 소위원회를 통과했다.'
+        summary: '여성기업 지원 범위를 기술·R&D까지 확대하는 여성기업육성법 개정안이 소위원회를 통과했다.',
+        url: 'https://search.naver.com/search.naver?query=여성기업육성법+개정안'
       },
       {
         date: '2026.03.27',
         title: '지자체 여성 창업 지원 예산 전년비 18% 확대',
         source: '행정안전부',
-        summary: '전국 17개 광역지자체의 여성 창업 지원 관련 예산이 전년 대비 평균 18% 증가한 것으로 집계.'
+        summary: '전국 17개 광역지자체의 여성 창업 지원 관련 예산이 전년 대비 평균 18% 증가한 것으로 집계.',
+        url: 'https://search.naver.com/search.naver?query=지자체+여성+창업+지원+예산'
       },
       {
         date: '2026.03.25',
         title: '여성기업 데이터베이스 구축 사업 본격 착수',
         source: '중기부 보도자료',
-        summary: '여성경제인협회 DB 기반 여성기업 종합 데이터베이스 구축 사업이 본격 추진된다.'
+        summary: '여성경제인협회 DB 기반 여성기업 종합 데이터베이스 구축 사업이 본격 추진된다.',
+        url: 'https://search.naver.com/search.naver?query=여성기업+데이터베이스+구축'
       }
     ];
 
@@ -444,7 +440,7 @@
             <span class="news-date">${item.date}</span>
             <span class="news-source">${item.source}</span>
           </div>
-          <div class="news-title">${item.title}</div>
+          <div class="news-title"><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></div>
           <div class="news-summary">${item.summary}</div>
         </div>
       `).join('');

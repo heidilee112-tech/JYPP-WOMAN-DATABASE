@@ -326,7 +326,7 @@
 
     function loadReviewData() {
       const SHEET_ID = '1khkxVaEbw1fe3IJzXQRngDTVmJ7ddUDT-VnoJ-AuBxU';
-      const query = encodeURIComponent("SELECT C, D, J WHERE O = '검토중'");
+      const query = encodeURIComponent("SELECT C, D, J WHERE O = '검토 중'");
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq=${query}`;
 
       fetch(url)

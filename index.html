@@ -215,12 +215,16 @@
     }
 
     /* ── 포트폴리오 링크 ── */
+    .portfolio-links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 48px;
+    }
     .portfolio-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      float: right;
-      margin-top: 48px;
       font-size: 14px;
       font-weight: 600;
       color: #009BE6;
@@ -322,9 +326,14 @@
 
     </div>
 
-    <a href="portfolio.html" class="portfolio-link">
-      JYPP 투자기업 최신뉴스 <span class="arrow">&rarr;</span>
-    </a>
+    <div class="portfolio-links">
+      <a href="portfolio.html" class="portfolio-link">
+        JYPP 투자기업 최신뉴스 <span class="arrow">&rarr;</span>
+      </a>
+      <a href="invest.html" class="portfolio-link">
+        JYPP 투자 현황 <span class="arrow">&rarr;</span>
+      </a>
+    </div>
 
   </main>
 

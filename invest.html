@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JYPP 투자 현황</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    header {
+      border-bottom: 1px solid #e8e8e8;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #009BE6; }
+    .logo a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .back-link {
+      font-size: 13px;
+      color: #888;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #009BE6; }
+
+    /* ── Main ── */
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #009BE6;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 32px;
+      letter-spacing: -0.5px;
+    }
+
+    /* ── 비밀번호 화면 ── */
+    .password-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      gap: 20px;
+    }
+    .lock-icon {
+      width: 56px;
+      height: 56px;
+      background: #E6F4FD;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #009BE6;
+    }
+    .password-screen p {
+      font-size: 15px;
+      color: #666;
+    }
+    .password-form {
+      display: flex;
+      gap: 8px;
+    }
+    .password-form input {
+      width: 220px;
+      padding: 10px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: 'Noto Sans KR', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .password-form input:focus {
+      border-color: #009BE6;
+    }
+    .password-form input.error {
+      border-color: #ef4444;
+      animation: shake 0.4s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    .password-form button {
+      padding: 10px 24px;
+      background: #009BE6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .password-form button:hover {
+      background: #0088CC;
+    }
+    .error-msg {
+      font-size: 13px;
+      color: #ef4444;
+      height: 18px;
+    }
+
+    /* ── 스프레드시트 영역 ── */
+    .sheet-container {
+      display: none;
+    }
+    .sheet-container.visible {
+      display: block;
+    }
+    .sheet-container iframe {
+      width: 100%;
+      height: 700px;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid #e8e8e8;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    @media (max-width: 768px) {
+      .section-title { font-size: 20px; }
+      .sheet-container iframe { height: 500px; }
+      .password-form { flex-direction: column; }
+      .password-form input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="logo"><a href="index.html"><span>JYPP</span> 여성기업 트렌드</a></div>
+      <a href="index.html" class="back-link">&larr; 메인으로 돌아가기</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <div class="section-label">Investment</div>
+    <h2 class="section-title">JYPP 투자 현황</h2>
+
+    <!-- 비밀번호 입력 -->
+    <div class="password-screen" id="passwordScreen">
+      <div class="lock-icon">&#128274;</div>
+      <p>이 페이지는 비밀번호로 보호되어 있습니다.</p>
+      <div class="password-form">
+        <input type="password" id="pwInput" placeholder="비밀번호를 입력하세요" autocomplete="off">
+        <button onclick="checkPassword()">확인</button>
+      </div>
+      <div class="error-msg" id="errorMsg"></div>
+    </div>
+
+    <!-- 스프레드시트 -->
+    <div class="sheet-container" id="sheetContainer">
+      <iframe
+        id="sheetFrame"
+        src=""
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 JYPP &middot; 투자 현황 &middot; 내부 자료
+  </footer>
+
+  <script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1khkxVaEbw1fe3IJzXQRngDTVmJ7ddUDT-VnoJ-AuBxU/edit?usp=sharing&rm=minimal';
+
+    const pwInput = document.getElementById('pwInput');
+    const errorMsg = document.getElementById('errorMsg');
+
+    pwInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    function checkPassword() {
+      const pw = pwInput.value;
+      if (pw === 'jypp2026') {
+        document.getElementById('passwordScreen').style.display = 'none';
+        const container = document.getElementById('sheetContainer');
+        container.classList.add('visible');
+        document.getElementById('sheetFrame').src = SHEET_URL;
+      } else {
+        errorMsg.textContent = '비밀번호가 올바르지 않습니다.';
+        pwInput.classList.add('error');
+        setTimeout(() => pwInput.classList.remove('error'), 400);
+      }
+    }
+  </script>
+
+</body>
+</html>

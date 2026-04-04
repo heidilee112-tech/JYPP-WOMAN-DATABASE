@@ -280,7 +280,7 @@
 
     <!-- 스프레드시트 -->
     <div class="sheet-container" id="sheetContainer">
-      <h3 class="sheet-label">전체 투자 현황</h3>
+      <h3 class="sheet-label">전체 검토 현황</h3>
       <iframe
         id="sheetFrame"
         src=""
@@ -326,7 +326,7 @@
 
     function loadReviewData() {
       const SHEET_ID = '1khkxVaEbw1fe3IJzXQRngDTVmJ7ddUDT-VnoJ-AuBxU';
-      const query = encodeURIComponent("SELECT C, D, J WHERE O = '검토 중'");
+      const query = encodeURIComponent("SELECT C, D, E WHERE O = '검토 중'");
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq=${query}`;
 
       fetch(url)
@@ -346,7 +346,7 @@
           document.getElementById('reviewCount').textContent = `${rows.length}건`;
 
           let html = '<table class="review-table"><thead><tr>';
-          html += '<th>기업명</th><th>분야</th><th>투자형태</th>';
+          html += '<th>기업명</th><th>분야</th><th>주요사업</th>';
           html += '</tr></thead><tbody>';
 
           rows.forEach(row => {

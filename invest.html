@@ -149,6 +149,69 @@
       height: 18px;
     }
 
+    /* ── 검토 중 기업 ── */
+    .review-section {
+      display: none;
+      margin-bottom: 48px;
+    }
+    .review-section.visible {
+      display: block;
+    }
+    .review-section h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+    .review-section h3 .count {
+      font-size: 13px;
+      font-weight: 500;
+      color: #009BE6;
+      margin-left: 8px;
+    }
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .review-table thead th {
+      text-align: left;
+      padding: 10px 16px;
+      background: #f7fbfe;
+      color: #555;
+      font-weight: 600;
+      font-size: 13px;
+      border-bottom: 2px solid #009BE6;
+    }
+    .review-table tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+    }
+    .review-table tbody tr:hover {
+      background: #fafcfe;
+    }
+    .review-loading {
+      text-align: center;
+      padding: 24px;
+      color: #999;
+      font-size: 13px;
+    }
+    .review-divider {
+      width: 100%;
+      height: 1px;
+      background: #e8e8e8;
+      margin-bottom: 32px;
+    }
+    .sheet-label {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+
     /* ── 스프레드시트 영역 ── */
     .sheet-container {
       display: none;
@@ -206,8 +269,18 @@
       <div class="error-msg" id="errorMsg"></div>
     </div>
 
+    <!-- 검토 중 기업 -->
+    <div class="review-section" id="reviewSection">
+      <h3>JYPP 검토 중 기업 <span class="count" id="reviewCount"></span></h3>
+      <div id="reviewContent">
+        <div class="review-loading">데이터를 불러오는 중...</div>
+      </div>
+      <div class="review-divider"></div>
+    </div>
+
     <!-- 스프레드시트 -->
     <div class="sheet-container" id="sheetContainer">
+      <h3 class="sheet-label">전체 투자 현황</h3>
       <iframe
         id="sheetFrame"
         src=""
@@ -235,6 +308,12 @@
       const pw = pwInput.value;
       if (pw === 'jypp2026') {
         document.getElementById('passwordScreen').style.display = 'none';
+
+        // 검토 중 기업 섹션 표시 & 데이터 로드
+        document.getElementById('reviewSection').classList.add('visible');
+        loadReviewData();
+
+        // 스프레드시트 표시
         const container = document.getElementById('sheetContainer');
         container.classList.add('visible');
         document.getElementById('sheetFrame').src = SHEET_URL;
@@ -243,6 +322,47 @@
         pwInput.classList.add('error');
         setTimeout(() => pwInput.classList.remove('error'), 400);
       }
+    }
+
+    function loadReviewData() {
+      const SHEET_ID = '1khkxVaEbw1fe3IJzXQRngDTVmJ7ddUDT-VnoJ-AuBxU';
+      const query = encodeURIComponent("SELECT C, D, J WHERE O = '검토중'");
+      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq=${query}`;
+
+      fetch(url)
+        .then(res => res.text())
+        .then(text => {
+          // Google returns JSONP-like response: google.visualization.Query.setResponse({...})
+          const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
+          const rows = json.table.rows;
+          const cols = json.table.cols;
+
+          if (rows.length === 0) {
+            document.getElementById('reviewContent').innerHTML =
+              '<p style="color:#999; font-size:14px; padding:16px 0;">현재 검토 중인 기업이 없습니다.</p>';
+            return;
+          }
+
+          document.getElementById('reviewCount').textContent = `${rows.length}건`;
+
+          let html = '<table class="review-table"><thead><tr>';
+          html += '<th>기업명</th><th>분야</th><th>투자형태</th>';
+          html += '</tr></thead><tbody>';
+
+          rows.forEach(row => {
+            const name = row.c[0] ? row.c[0].v : '-';
+            const field = row.c[1] ? row.c[1].v : '-';
+            const type = row.c[2] ? row.c[2].v : '-';
+            html += `<tr><td>${name}</td><td>${field}</td><td>${type}</td></tr>`;
+          });
+
+          html += '</tbody></table>';
+          document.getElementById('reviewContent').innerHTML = html;
+        })
+        .catch(err => {
+          document.getElementById('reviewContent').innerHTML =
+            '<p style="color:#ef4444; font-size:13px;">데이터를 불러오지 못했습니다. 스프레드시트 공유 설정을 확인해주세요.</p>';
+        });
     }
   </script>
 
